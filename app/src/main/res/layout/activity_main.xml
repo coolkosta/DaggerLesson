@@ -7,13 +7,33 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/increment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="increment"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="touch"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/openBBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="open Activity B"
+        app:layout_constraintEnd_toEndOf="@id/increment"
+        app:layout_constraintStart_toStartOf="@id/increment"
+        app:layout_constraintTop_toBottomOf="@id/increment" />
+
+    <TextView
+        android:id="@+id/textViewMainActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/openBBtn"
+        app:layout_constraintEnd_toEndOf="@id/openBBtn"
+        app:layout_constraintTop_toBottomOf="@id/openBBtn"
+        tools:text = "TEST"
+        android:textSize="40sp"
+        android:layout_marginTop="16dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
