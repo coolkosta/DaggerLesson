@@ -15,11 +15,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        DaggerMainActivityComponent
-            .builder()
-            .singletonComponent(SingletonComponentHolder.getSingletonComponent())
-            .build()
+
+        SingletonComponentHolder.getSingletonComponent()
+            .mainActivityComponent()
+            .create()
             .inject(this)
+
         setContentView(R.layout.activity_main)
         findViewById<View>(R.id.increment).setOnClickListener {
             counter.increment()
@@ -28,7 +29,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         findViewById<View>(R.id.openBBtn).setOnClickListener {
-            startActivity(Intent(this, ActivityB::class.java))
+            startActivity(Intent(this, ActivityB::class.java)
+                .putExtra("name", "Konstantin")
+                .putExtra("surname", "Borzakov"))
         }
     }
 }

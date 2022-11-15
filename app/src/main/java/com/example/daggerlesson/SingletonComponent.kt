@@ -8,17 +8,25 @@ import javax.inject.Scope
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [CounterModule::class])
+@Component(modules = [CounterModule::class, SubcomponentsModule::class])
 interface SingletonComponent {
 
-    fun provideCounter(): ICounter
+    fun mainActivityComponent(): MainActivityComponent.Factory
+    fun activityBComponent(): ActivityBComponent.Factory
+
+    // Удаляем метод показа данного компонента на одну иерархию вниз.
+    //fun provideCounter(): ICounter
 }
+
+@Module(subcomponents = [MainActivityComponent::class, ActivityBComponent::class])
+interface SubcomponentsModule
+
 
 @Module
 interface CounterModule {
 
     @Binds
-    @Reusable
+    @Singleton
     fun bindCounter(counter: Counter): ICounter
 }
 
